@@ -21,12 +21,15 @@ def fetch(url: str) -> str:
 def extract_codes_from_courses_section(url: str):
     html = fetch(url)
     soup = BeautifulSoup(html, "lxml")
+
+    # Try #courses first
     section = soup.select_one("#courses")
-    if not section:
-        # fallback: grab whole page text if #courses isn't found
-        text = soup.get_text(" ", strip=True).upper()
-    else:
+
+    # If #courses isn't present (sometimes happens), fallback to the whole page
+    if section:
         text = section.get_text(" ", strip=True).upper()
+    else:
+        text = soup.get_text(" ", strip=True).upper()
 
     codes = {c.replace(" ", "") for c in COURSE_CODE_RE.findall(text)}
     return sorted(codes)

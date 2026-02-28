@@ -1,0 +1,27 @@
+{
+  "total_unique_courses": 44,
+  "core_courses": 15,
+  "analytics_courses": 25,
+  "ai_courses": 24,
+  "enterprise_courses": 27,
+  "shared_by_all_three_options": 21,
+  "unique_to_analytics": [
+    "BABI3000",
+    "BABI3005",
+    "BABI4000",
+    "BABI4005"
+  ],
+  "unique_to_ai": [
+    "BSYS3001",
+    "BSYS4001",
+    "BSYS4005"
+  ],
+  "unique_to_enterprise": [
+    "BSYS3105",
+    "BSYS4075",
+    "BSYS4205",
+    "OPMT1100",
+    "OPMT1103",
+    "OPMT2172"
+  ]
+}
