@@ -1,0 +1,181 @@
+{
+  "BABI3000": [
+    "analytics"
+  ],
+  "BABI3005": [
+    "analytics"
+  ],
+  "BABI4000": [
+    "analytics"
+  ],
+  "BABI4005": [
+    "analytics"
+  ],
+  "BLAW3600": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS1000": [
+    "core"
+  ],
+  "BSYS1001": [
+    "core"
+  ],
+  "BSYS2000": [
+    "core",
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS2065": [
+    "core",
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS3000": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS3001": [
+    "ai"
+  ],
+  "BSYS3105": [
+    "enterprise"
+  ],
+  "BSYS3205": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS3355": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS4000": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BSYS4001": [
+    "ai"
+  ],
+  "BSYS4005": [
+    "ai"
+  ],
+  "BSYS4075": [
+    "enterprise"
+  ],
+  "BSYS4205": [
+    "enterprise"
+  ],
+  "BSYS4905": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BUSA2005": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BUSA2100": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BUSA2150": [
+    "core",
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BUSA4800": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "BUSA4850": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "COMM1100": [
+    "core"
+  ],
+  "COMM2200": [
+    "core"
+  ],
+  "ECON2100": [
+    "core"
+  ],
+  "ECON2200": [
+    "core"
+  ],
+  "FMGT2100": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "FMGT2152": [
+    "core",
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "FMGT3221": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "FMGT4530": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "MKTG1102": [
+    "core"
+  ],
+  "OPMT1100": [
+    "enterprise"
+  ],
+  "OPMT1103": [
+    "core",
+    "enterprise"
+  ],
+  "OPMT1110": [
+    "core"
+  ],
+  "OPMT1130": [
+    "core"
+  ],
+  "OPMT1170": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "OPMT1174": [
+    "core"
+  ],
+  "OPMT1197": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "OPMT2172": [
+    "enterprise"
+  ],
+  "OPMT3301": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ],
+  "OPMT4170": [
+    "analytics",
+    "ai",
+    "enterprise"
+  ]
+}

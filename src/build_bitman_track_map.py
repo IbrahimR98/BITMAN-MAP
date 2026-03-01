@@ -76,7 +76,7 @@ def main():
     titles = {
         "core": "CORE (Year 1 Mandatory)",
         "analytics": "ANALYTICS",
-        "ai": "Artificial Intelligence Management",
+        "ai": "ARTIFICIAL INTELLIGENCE MANAGEMENT",
         "enterprise": "ENTERPRISE"
     }
 
@@ -84,7 +84,7 @@ def main():
     for track in TRACKS:
         title_font = 16
         if track == "ai":
-            title_font = 13  # smaller so it fits nicely
+            title_font = 16  # smaller so it fits nicely
 
         ax.text(
             column_positions[track],
