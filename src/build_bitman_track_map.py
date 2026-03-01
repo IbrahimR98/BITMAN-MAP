@@ -8,8 +8,7 @@ OUT = "results/bitman_track_map_clean.png"
 
 TRACKS = ["core", "analytics", "ai", "enterprise"]
 
-
-# Manually define flex learning courses here (edit as needed)
+# ⭐ Flexible Learning courses (blue)
 FLEX_COURSES = {
     "BSYS2000",
     "BSYS2065",
@@ -25,7 +24,7 @@ FLEX_COURSES = {
     "BSYS4075",
 }
 
-# ✱ Half-semester courses (EDIT this list as needed)
+# ✱ Half-semester courses
 HALF_SEMESTER = {
     "BSYS2065",
     "BABI4005",
@@ -44,6 +43,7 @@ def main():
     unique_ai = set(summary.get("unique_to_ai", []))
     unique_enterprise = set(summary.get("unique_to_enterprise", []))
 
+    # Group course codes per track
     groups = {t: [] for t in TRACKS}
     for code, tlist in tags.items():
         for t in tlist:
@@ -59,54 +59,68 @@ def main():
 
     # BIG TITLE
     ax.text(
-        0.5,
-        1.06,
+        0.5, 1.06,
         "BCIT BITMAN Program 2-Year Map",
-        fontsize=26,
-        weight="bold",
-        ha="center",
+        fontsize=26, weight="bold", ha="center",
         transform=ax.transAxes
     )
 
+    # Slightly adjusted column positions for better balance
     column_positions = {
         "core": 0.05,
         "analytics": 0.30,
-        "ai": 0.55,
-        "enterprise": 0.80,
+        "ai": 0.57,
+        "enterprise": 0.82,
     }
 
     titles = {
         "core": "CORE (Year 1 Mandatory)",
         "analytics": "ANALYTICS",
-        "ai": "AI",
+        "ai": "Artificial Intelligence Management",
         "enterprise": "ENTERPRISE"
     }
 
-    # Section titles (larger)
+    # Section titles (make AI title slightly smaller so it doesn't look weird)
     for track in TRACKS:
+        title_font = 16
+        if track == "ai":
+            title_font = 13  # smaller so it fits nicely
+
         ax.text(
             column_positions[track],
             0.98,
             titles[track],
-            fontsize=16,
+            fontsize=title_font,
             weight="bold",
             transform=ax.transAxes
         )
 
     def draw_column(track):
         y = 0.94
-        for code in groups[track]:
 
+        # If a column is truly empty, show it clearly
+        if len(groups[track]) == 0:
+            ax.text(
+                column_positions[track],
+                y,
+                "(no courses detected)",
+                fontsize=11,
+                style="italic",
+                transform=ax.transAxes
+            )
+            return
+
+        for code in groups[track]:
             label = code
             fontweight = "normal"
             color = "black"
 
-            # Flexible Learning (⭐ + blue)
+            # ⭐ Flexible Learning (blue)
             if code in FLEX_COURSES:
                 label = f"⭐ {label}"
                 color = "#1565C0"
 
-            # Half-semester (✱)
+            # ✱ Half-semester
             if code in HALF_SEMESTER:
                 label = f"{label} ✱"
 
@@ -122,13 +136,12 @@ def main():
                 column_positions[track],
                 y,
                 label,
-                fontsize=12,      # 🔠 increased
+                fontsize=12,
                 fontweight=fontweight,
                 color=color,
                 transform=ax.transAxes
             )
-
-            y -= 0.036  # slightly more spacing
+            y -= 0.036
 
     for t in TRACKS:
         draw_column(t)
