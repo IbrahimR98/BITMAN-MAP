@@ -24,6 +24,16 @@ FLEX_COURSES = {
     "BSYS4075",
 }
 
+# ✱ Half-semester courses (EDIT this list as needed)
+HALF_SEMESTER = {
+    "BSYS2065",
+    "BABI4005",
+    "BSYS4905",
+    "BSYS4005",
+    "BSYS4205",
+}
+
+
 def main():
     os.makedirs("results", exist_ok=True)
 
@@ -43,16 +53,16 @@ def main():
     for t in TRACKS:
         groups[t] = sorted(set(groups[t]))
 
-    plt.figure(figsize=(20, 12))
+    plt.figure(figsize=(22, 13))
     ax = plt.gca()
     ax.axis("off")
 
-    # 🔥 BIG TITLE
+    # BIG TITLE
     ax.text(
         0.5,
-        1.05,
+        1.06,
         "BCIT BITMAN Program 2-Year Map",
-        fontsize=22,
+        fontsize=26,
         weight="bold",
         ha="center",
         transform=ax.transAxes
@@ -72,18 +82,17 @@ def main():
         "enterprise": "ENTERPRISE"
     }
 
-    # Draw section titles
+    # Section titles (larger)
     for track in TRACKS:
         ax.text(
             column_positions[track],
             0.98,
             titles[track],
-            fontsize=14,
+            fontsize=16,
             weight="bold",
             transform=ax.transAxes
         )
 
-    # Draw courses
     def draw_column(track):
         y = 0.94
         for code in groups[track]:
@@ -92,10 +101,14 @@ def main():
             fontweight = "normal"
             color = "black"
 
-            # ⭐ Flexible learning courses (blue)
+            # Flexible Learning (⭐ + blue)
             if code in FLEX_COURSES:
                 label = f"⭐ {label}"
-                color = "#1565C0"  # clean professional blue
+                color = "#1565C0"
+
+            # Half-semester (✱)
+            if code in HALF_SEMESTER:
+                label = f"{label} ✱"
 
             # Bold specialization-unique courses
             if track == "analytics" and code in unique_analytics:
@@ -109,13 +122,13 @@ def main():
                 column_positions[track],
                 y,
                 label,
-                fontsize=10,
+                fontsize=12,      # 🔠 increased
                 fontweight=fontweight,
                 color=color,
                 transform=ax.transAxes
             )
 
-            y -= 0.032
+            y -= 0.036  # slightly more spacing
 
     for t in TRACKS:
         draw_column(t)
@@ -123,14 +136,14 @@ def main():
     # Legend
     ax.text(
         0.05,
-        0.01,
-        "⭐ Blue = Flexible Learning  |  Bold = Specialization-unique course",
-        fontsize=10,
+        0.015,
+        "⭐ Blue = Flexible Learning  |  ✱ = Half Semester  |  Bold = Specialization-unique course",
+        fontsize=11,
         transform=ax.transAxes
     )
 
     plt.tight_layout()
-    plt.savefig(OUT, dpi=250, bbox_inches="tight")
+    plt.savefig(OUT, dpi=300, bbox_inches="tight")
     print(f"Saved -> {OUT}")
 
 if __name__ == "__main__":
