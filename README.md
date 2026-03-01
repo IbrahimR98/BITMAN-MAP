@@ -42,19 +42,7 @@ The goal of this project is to transform static program webpages into a clean, s
 
 
 
-\## Final Output
 
-
-
-The final generated map:
-
-
-
-!\[BITMAN 2-Year Map](results/bitman\_track\_map\_clean.png)
-
-
-
----
 
 
 
