@@ -9,7 +9,6 @@
 * BCIT. “BITMAN – Artificial Intelligence Management Option – Courses.” https://www.bcit.ca/programs/business-information-technology-management-artificial-intelligence-management-option-diploma-full-time-623adipma/#courses
 * BCIT. “BITMAN – Enterprise Systems Management Option – Courses.” https://www.bcit.ca/programs/business-information-technology-management-enterprise-systems-management-option-diploma-full-time-623bdipma/#courses
 * BCIT. "BCIT FLEXIBLE LEARNING COURSES" https://www.bcit.ca/flexible-learning/
-* Open Ai was used for coding. 
 
 
 
