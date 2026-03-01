@@ -1,72 +1,87 @@
 import json
 import os
 import matplotlib.pyplot as plt
-import networkx as nx
 
 TAGS_FILE = "data/processed/course_tags.json"
-OUT = "results/bitman_track_map.png"
+OUT = "results/bitman_track_map_clean.png"
 
-TRACK_ORDER = ["core", "analytics", "ai", "enterprise"]
+TRACKS = ["core", "analytics", "ai", "enterprise"]
+XPOS = {"core": 0, "analytics": 4, "ai": 8, "enterprise": 12}
 
 def main():
     os.makedirs("results", exist_ok=True)
 
     tags = json.load(open(TAGS_FILE, "r", encoding="utf-8"))
 
-    # Group nodes by track label
-    groups = {t: [] for t in TRACK_ORDER}
-    shared = []
-
+    # Group course codes per track
+    groups = {t: [] for t in TRACKS}
     for code, tlist in tags.items():
-        tset = set(tlist)
-        # "core" group
-        if "core" in tset:
-            groups["core"].append(code)
-        # options
-        if "analytics" in tset:
-            groups["analytics"].append(code)
-        if "ai" in tset:
-            groups["ai"].append(code)
-        if "enterprise" in tset:
-            groups["enterprise"].append(code)
-
-        # mark shared across all 3 options
-        if {"analytics", "ai", "enterprise"}.issubset(tset):
-            shared.append(code)
-
-    # Build graph: connect tracks -> courses (a "map" layout)
-    G = nx.DiGraph()
-    for t in TRACK_ORDER:
-        G.add_node(t.upper())
-
-    for code, tlist in tags.items():
-        G.add_node(code)
         for t in tlist:
-            G.add_edge(t.upper(), code)
+            if t in groups:
+                groups[t].append(code)
 
-    # Manual layout (makes it readable)
-    pos = {}
-    pos["CORE"] = (-2, 0)
-    pos["ANALYTICS"] = (0, 1.5)
-    pos["AI"] = (0, 0)
-    pos["ENTERPRISE"] = (0, -1.5)
+    for t in TRACKS:
+        groups[t] = sorted(set(groups[t]))
 
-    # Spread courses near their track label
-    def place_codes(codes, x_base, y_base):
-        codes = sorted(codes)
-        for i, code in enumerate(codes):
-            pos[code] = (x_base + 2 + (i % 10) * 0.6, y_base - (i // 10) * 0.35)
+    # Figure out which courses are shared across multiple option tracks
+    option_tracks = {"analytics", "ai", "enterprise"}
+    shared_all_three = []
+    shared_two = []
 
-    place_codes(groups["core"], -2, 0)
-    place_codes(groups["analytics"], 0, 1.5)
-    place_codes(groups["ai"], 0, 0)
-    place_codes(groups["enterprise"], 0, -1.5)
+    for code, tlist in tags.items():
+        tset = set(tlist) & option_tracks
+        if len(tset) == 3:
+            shared_all_three.append(code)
+        elif len(tset) == 2:
+            shared_two.append(code)
 
+    shared_all_three = set(shared_all_three)
+    shared_two = set(shared_two)
+
+    # Plot
     plt.figure(figsize=(18, 10))
-    nx.draw(G, pos, with_labels=True, node_size=1200, font_size=8, arrows=False)
-    plt.title("BITMAN Map: Core + Options (track membership + overlaps)")
+    ax = plt.gca()
+    ax.axis("off")
+
+    # Titles
+    ax.text(XPOS["core"], 1.02, "CORE (Year 1 Mandatory)", fontsize=14, weight="bold", transform=ax.transAxes)
+    ax.text(XPOS["analytics"]/16, 1.02, "ANALYTICS", fontsize=14, weight="bold", transform=ax.transAxes)
+    ax.text(XPOS["ai"]/16, 1.02, "AI", fontsize=14, weight="bold", transform=ax.transAxes)
+    ax.text(XPOS["enterprise"]/16, 1.02, "ENTERPRISE", fontsize=14, weight="bold", transform=ax.transAxes)
+
+    # Helper to place a column
+    def draw_column(track, x, y_start=0.95, step=0.035):
+        y = y_start
+        for code in groups[track]:
+            label = code
+
+            # Tag shared courses (only for option columns)
+            if track in option_tracks:
+                if code in shared_all_three:
+                    label = f"{code}  (shared by all 3 options)"
+                elif code in shared_two:
+                    label = f"{code}  (shared by 2 options)"
+
+            ax.text(x, y, label, fontsize=10, transform=ax.transAxes)
+            y -= step
+
+            # If too long, start a second mini column (wrap)
+            if y < 0.05:
+                x += 0.18  # move right a bit (within same track)
+                y = y_start
+
+    # Draw columns (x in Axes coords 0..1)
+    draw_column("core", 0.02)
+    draw_column("analytics", 0.27)
+    draw_column("ai", 0.52)
+    draw_column("enterprise", 0.77)
+
+    ax.text(0.02, 0.01,
+            "Note: This map shows track membership + overlap. Prerequisite relationships were not reliably available in static HTML.",
+            fontsize=9, transform=ax.transAxes)
+
     plt.tight_layout()
-    plt.savefig(OUT, dpi=200)
+    plt.savefig(OUT, dpi=220)
     print(f"Saved -> {OUT}")
 
 if __name__ == "__main__":
