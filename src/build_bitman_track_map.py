@@ -113,7 +113,7 @@ def main():
             # Bold specialization-unique courses
             if track == "analytics" and code in unique_analytics:
                 fontweight = "bold"
-            elif track == "ai" and code in unique_ai:
+            elif track == "aim" and code in unique_aim:
                 fontweight = "bold"
             elif track == "enterprise" and code in unique_enterprise:
                 fontweight = "bold"
