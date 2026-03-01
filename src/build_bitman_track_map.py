@@ -6,7 +6,7 @@ TAGS_FILE = "data/processed/course_tags.json"
 SUMMARY_FILE = "data/processed/track_summary.json"
 OUT = "results/bitman_track_map_clean.png"
 
-TRACKS = ["core", "analytics", "ai", "enterprise"]
+TRACKS = ["core", "analytics", "aim", "enterprise"]
 
 # Manually define flex learning courses here (edit as needed)
 FLEX_COURSES = {
@@ -41,7 +41,7 @@ def main():
     summary = json.load(open(SUMMARY_FILE, "r", encoding="utf-8"))
 
     unique_analytics = set(summary.get("unique_to_analytics", []))
-    unique_ai = set(summary.get("unique_to_ai", []))
+    unique_aim = set(summary.get("unique_to_aim", []))
     unique_enterprise = set(summary.get("unique_to_enterprise", []))
 
     groups = {t: [] for t in TRACKS}
@@ -62,7 +62,7 @@ def main():
         0.5,
         1.06,
         "BCIT BITMAN Program 2-Year Map",
-        fontsize=26,
+        fontsize=30,
         weight="bold",
         ha="center",
         transform=ax.transAxes
@@ -71,14 +71,14 @@ def main():
     column_positions = {
         "core": 0.05,
         "analytics": 0.30,
-        "ai": 0.55,
+        "aim": 0.55,
         "enterprise": 0.80,
     }
 
     titles = {
         "core": "CORE (Year 1 Mandatory)",
         "analytics": "ANALYTICS",
-        "ai": "AI",
+        "aim": "Artificial Intelligence Management",
         "enterprise": "ENTERPRISE"
     }
 
@@ -137,8 +137,8 @@ def main():
     ax.text(
         0.05,
         0.015,
-        "⭐ Blue = Flexible Learning  |  ✱ = Half Semester  |  Bold = Specialization-unique course",
-        fontsize=11,
+        "⭐ Blue = Flexible Learning  |  ✱ = Half Semester Course  |  Bold = Specialization Course",
+        fontsize=12,
         transform=ax.transAxes
     )
 
