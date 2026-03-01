@@ -2,7 +2,7 @@
 
 
 
-Going into this assignment, I honestly thought it was going to be pretty simple. I figured I could just scrape the BITMAN program pages, pull the course information, and automatically generate a clean visual map. In my head, it sounded straightforward. But once I actually started working on it, I realized that scraping real websites is way messier than it looks.
+Going into this assignment, I honestly thought it was going to be pretty simple. I picked Idea 3 because I wanted to show a visual represenation of BITMAN's program path to graduation. I figured I could just scrape the BITMAN program pages, pull the course information, and automatically generate a clean visual map. In my head, it sounded straightforward. But once I actually started working on it, I realized that scraping real websites is way messier than it looks.
 
 
 
