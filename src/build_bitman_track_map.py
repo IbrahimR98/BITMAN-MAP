@@ -8,6 +8,7 @@ OUT = "results/bitman_track_map_clean.png"
 
 TRACKS = ["core", "analytics", "ai", "enterprise"]
 
+
 # Manually define flex learning courses here (edit as needed)
 FLEX_COURSES = {
     "BSYS2000",
@@ -77,7 +78,7 @@ def main():
     titles = {
         "core": "CORE (Year 1 Mandatory)",
         "analytics": "ANALYTICS",
-        "ai": "Artificial Intelligence Management",
+        "ai": "AI",
         "enterprise": "ENTERPRISE"
     }
 
