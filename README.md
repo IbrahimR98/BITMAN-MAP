@@ -37,6 +37,7 @@ It shows:
 The goal of this project is to transform static program webpages into a clean, structured, and visual representation of the full diploma path.
 
 
+<img width="1078" height="636" alt="image" src="https://github.com/user-attachments/assets/b45d18cf-e45e-4b27-bc3b-ec8ca5d481d8" />
 
 ---
 
