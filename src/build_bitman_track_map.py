@@ -6,7 +6,7 @@ TAGS_FILE = "data/processed/course_tags.json"
 SUMMARY_FILE = "data/processed/track_summary.json"
 OUT = "results/bitman_track_map_clean.png"
 
-TRACKS = ["core", "analytics", "aim", "enterprise"]
+TRACKS = ["core", "analytics", "ai", "enterprise"]
 
 # Manually define flex learning courses here (edit as needed)
 FLEX_COURSES = {
